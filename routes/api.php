@@ -29,6 +29,9 @@ Route::group(['namespace' => 'App\Http\Controllers\Api', 'middleware' => 'api'],
         // http://localhost:8000/api/belts/new -> Napravi novi
         Route::post('/new', 'BeltController@addBelt');
 
+        // http://localhost:8000/api/belts/42 -> Update kaisa 42
+        Route::post('/{belt}', 'BeltController@updateBelt');
+
         // http://localhost:8000/api/belts/42/delete -> Obrisi kais sa id-jem 42
         Route::delete('/{belt}/delete', 'BeltController@deleteBelt');
     });;

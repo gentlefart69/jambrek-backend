@@ -28,7 +28,8 @@ class BeltController extends Controller
      * 
      * @return Json response
      */
-    public function getAll() {
+    public function getAll()
+    {
         return $this->beltService->getAll();
     }
 
@@ -67,6 +68,21 @@ class BeltController extends Controller
         $belt = $this->beltService->addBelt($beltData);
 
         return response()->json($belt);
+    }
+
+    /**
+     * Updates a belt
+     * 
+     * @param Request $request
+     * 
+     * @return Response Json respnose
+     */
+    public function updateBelt(Request $request)
+    {
+        $id = $request->route('belt');
+        $beltData = $request->all();
+
+        return $this->beltService->update($id, $beltData);
     }
 
     /**

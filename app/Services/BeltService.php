@@ -58,7 +58,8 @@ class BeltService
      * 
      * @return Belt
      */
-    public function addBelt($beltData) {
+    public function addBelt($beltData)
+    {
         $belt = $this->beltRepository->add($beltData);
         return $belt;
     }
@@ -84,13 +85,13 @@ class BeltService
         return $belt;
     }
 
-
     /**
      * Delete belt
      * 
      * @param string $beltId Belt id
      */
-    public function deleteBelt(string $beltId) {
+    public function deleteBelt(string $beltId)
+    {
         $belt = $this->beltRepository->delete($beltId);
     }
 }

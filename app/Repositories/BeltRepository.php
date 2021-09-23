@@ -13,7 +13,8 @@ class BeltRepository implements Repository
      * 
      * @return array Belt
      */
-    public function getAll() {
+    public function getAll()
+    {
         return Belt::all();
     }
 
@@ -24,9 +25,9 @@ class BeltRepository implements Repository
      * 
      * @return Belt
      */
-    public function getById($beltId) {
+    public function getById($beltId)
+    {
         return Belt::where('id', $beltId)->first();
-
     }
 
     /**
@@ -57,7 +58,8 @@ class BeltRepository implements Repository
      * 
      * @returns Belt
      */
-    public function update(string $beltId, array $beltData) {
+    public function update(string $beltId, array $beltData)
+    {
         $belt = Belt::where('id', $beltId)->first();
 
         if (!$belt) {
@@ -71,6 +73,7 @@ class BeltRepository implements Repository
         $belt->price = $beltData['price'];
 
         $belt->save();
+        return $belt;
     }
 
     /**
