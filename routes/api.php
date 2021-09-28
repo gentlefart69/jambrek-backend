@@ -19,6 +19,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['namespace' => 'App\Http\Controllers\Api', 'middleware' => 'api'], function () {
+    Route::post('/login', 'SessionController@login');
+    Route::post('/register', 'SessionController@register');
+    Route::delete('/logout', 'SessionController@logout');
+
+
     Route::group(['prefix' => 'belts'], function () {
         // http://localhost:8000/api/belts -> Sve kaiseve
         Route::get('/', 'BeltController@getAll');
