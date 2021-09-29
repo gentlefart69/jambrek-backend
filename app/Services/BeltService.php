@@ -21,9 +21,9 @@ class BeltService
     }
     /**
      * Returns all belts.
-     * 
+     *
      * @throws BeltNotFoundException if belt is not found.
-     * 
+     *
      * @return Belt
      */
     public function getAll()
@@ -33,11 +33,11 @@ class BeltService
 
     /**
      * Returns belt by unique id.
-     * 
+     *
      * @param string $beltId Belt id.
-     * 
+     *
      * @throws BeltNotFoundException if belt is not found.
-     * 
+     *
      * @return Belt
      */
     public function getBelt(string $beltId)
@@ -53,25 +53,25 @@ class BeltService
 
     /**
      * Creates new belt.
-     * 
+     *
      * @param $beltData
-     * 
+     *
      * @return Belt
      */
-    public function addBelt($beltData)
+    public function addBelt($beltData, $beltImage)
     {
-        $belt = $this->beltRepository->add($beltData);
+        $belt = $this->beltRepository->add($beltData, $beltImage);
         return $belt;
     }
 
     /**
      * Updates existing belt
-     * 
+     *
      * @param string $beltId Belt id.
      * @param array $beltData new belt data.
-     * 
+     *
      * @throws BeltNotFoundException if belt is not found.
-     * 
+     *
      * @return Belt
      */
     public function update(string $beltId, array $beltData)
@@ -87,7 +87,7 @@ class BeltService
 
     /**
      * Delete belt
-     * 
+     *
      * @param string $beltId Belt id
      */
     public function deleteBelt(string $beltId)

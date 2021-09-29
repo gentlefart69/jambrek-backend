@@ -25,7 +25,7 @@ class BeltController extends Controller
 
     /**
      * Gets all belts
-     * 
+     *
      * @return Json response
      */
     public function getAll()
@@ -35,9 +35,9 @@ class BeltController extends Controller
 
     /**
      * Gets a belt
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @return Response Json respnose
      */
     public function getBelt(Request $request)
@@ -50,13 +50,15 @@ class BeltController extends Controller
 
     /**
      * Adds a new belt
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @return Response Json respnose
      */
     public function addBelt(Request $request)
     {
+        $beltImage = $request->file('image');
+
         $beltData = [
             'name' => $request->name,
             'color' => $request->color,
@@ -65,16 +67,16 @@ class BeltController extends Controller
             'price' => $request->price,
         ];
 
-        $belt = $this->beltService->addBelt($beltData);
+        $belt = $this->beltService->addBelt($beltData, $beltImage);
 
         return response()->json($belt);
     }
 
     /**
      * Updates a belt
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @return Response Json respnose
      */
     public function updateBelt(Request $request)
@@ -87,9 +89,9 @@ class BeltController extends Controller
 
     /**
      * Deletes a belt
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @return Response Json respnose
      */
     public function deleteBelt(Request $request)

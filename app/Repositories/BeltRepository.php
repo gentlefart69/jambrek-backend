@@ -5,12 +5,13 @@ namespace App\Repositories;
 use App\Models\Belt;
 use App\Exceptions\BeltNotFoundException;
 use App\Contracts\Belt\BeltRepository as Repository;
+use Illuminate\Http\UploadedFile;
 
 class BeltRepository implements Repository
 {
     /**
      * Get all belts.
-     * 
+     *
      * @return array Belt
      */
     public function getAll()
@@ -20,9 +21,9 @@ class BeltRepository implements Repository
 
     /**
      * Get belt by id.
-     * 
+     *
      * @param $beltId belt id
-     * 
+     *
      * @return Belt
      */
     public function getById($beltId)
@@ -32,19 +33,22 @@ class BeltRepository implements Repository
 
     /**
      * Adds a new belt
-     * 
+     *
      * @param string $beltData belt data
-     * 
+     *
      * @return Belt
      */
-    public function add(array $beltData)
+    public function add(array $beltData, UploadedFile $beltImage)
     {
+        $path = $beltImage->store('belts/images', ['disk' => 'public']);
+
         $belt = new Belt;
         $belt->name = $beltData['name'];
         $belt->category = $beltData['category'];
         $belt->color = $beltData['color'];
         $belt->type = $beltData['type'];
         $belt->price = $beltData['price'];
+        $belt->image = $path;
         $belt->save();
 
         return $belt;
@@ -52,10 +56,10 @@ class BeltRepository implements Repository
 
     /**
      * Updates a belt.
-     * 
+     *
      * @param string $beltId id.
      * @param array $beltData Belt data.
-     * 
+     *
      * @returns Belt
      */
     public function update(string $beltId, array $beltData)
@@ -78,7 +82,7 @@ class BeltRepository implements Repository
 
     /**
      * Deletes a belt
-     * 
+     *
      * @param string $beltId belt id
      */
     public function delete($beltId)
